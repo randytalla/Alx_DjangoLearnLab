@@ -23,18 +23,18 @@ def get_books_by_author(author_name):
 def list_books_in_library(library_name):
     try:
         library = Library.objects.get(name=library_name)
-        books = library.books.all()  # This is still valid
+        books = library.books.all()  # ✅ This remains unchanged
         print(f"Books available in {library_name}:")
         for book in books:
             print(f"- {book.title}")
     except Library.DoesNotExist:
         print(f"Library '{library_name}' not found.")
 
-# 3️⃣ Retrieve the librarian for a specific library
+# 3️⃣ Retrieve the librarian for a specific library using Librarian.objects.get()
 def get_librarian_for_library(library_name):
     try:
         library = Library.objects.get(name=library_name)
-        librarian = library.librarian  # Accessing the librarian of the library
+        librarian = Librarian.objects.get(library=library)  # ✅ Using objects.get(library=library) as required
         print(f"The librarian for {library_name} is {librarian.name}.")
     except Library.DoesNotExist:
         print(f"Library '{library_name}' not found.")
