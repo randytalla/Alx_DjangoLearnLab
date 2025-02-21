@@ -8,11 +8,11 @@ django.setup()
 # Import the models
 from relationship_app.models import Author, Book, Library, Librarian
 
-# 1️⃣ Query all books by a specific author
+# 1️⃣ Query all books by a specific author using filter()
 def get_books_by_author(author_name):
     try:
         author = Author.objects.get(name=author_name)
-        books = author.books.all()  # related_name="books" in the ForeignKey field
+        books = Book.objects.filter(author=author)  # ✅ Using objects.filter(author=author) as required
         print(f"Books written by {author_name}:")
         for book in books:
             print(f"- {book.title}")
@@ -23,7 +23,7 @@ def get_books_by_author(author_name):
 def list_books_in_library(library_name):
     try:
         library = Library.objects.get(name=library_name)
-        books = library.books.all()  # related_name="libraries" in the ManyToManyField
+        books = library.books.all()  # This is still valid
         print(f"Books available in {library_name}:")
         for book in books:
             print(f"- {book.title}")
@@ -34,7 +34,7 @@ def list_books_in_library(library_name):
 def get_librarian_for_library(library_name):
     try:
         library = Library.objects.get(name=library_name)
-        librarian = library.librarian  # related_name="librarian" in OneToOneField
+        librarian = library.librarian  # Accessing the librarian of the library
         print(f"The librarian for {library_name} is {librarian.name}.")
     except Library.DoesNotExist:
         print(f"Library '{library_name}' not found.")
