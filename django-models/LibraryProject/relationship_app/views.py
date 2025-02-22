@@ -1,10 +1,11 @@
 from django.views.generic.detail import DetailView
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, logout
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Book 
 from .models import Library
+from django.contrib.auth import login
 
 
 
