@@ -2,7 +2,7 @@ import os
 import django
 
 # Set up Django environment
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "myproject.settings")  # Change 'myproject' to your actual project name
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "LibraryProject.settings")  # Change 'myproject' to your actual project name
 django.setup()
 
 # Import the models
