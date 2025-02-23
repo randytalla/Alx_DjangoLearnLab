@@ -24,29 +24,31 @@ from .models import Library
 
 # Role Check Functions
 def is_admin(user):
-    if user.is_authenticated:
-        try:
-            return user.userprofile.role == 'Admin'
-        except ObjectDoesNotExist:
-            return False
-    return False
+    return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Admin'
 
 def is_librarian(user):
-    if user.is_authenticated:
-        try:
-            return user.userprofile.role == 'Librarian'
-        except ObjectDoesNotExist:
-            return False
-    return False
+    return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Librarian'
 
 def is_member(user):
-    if user.is_authenticated:
-        try:
-            return user.userprofile.role == 'Member'
-        except ObjectDoesNotExist:
-            return False
-    return False
+    return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Member'
 
+# Admin view
+@login_required
+@user_passes_test(is_admin)
+def admin_view(request):
+    return render(request, 'relationship_app/admin_view.html')
+
+# Librarian view
+@login_required
+@user_passes_test(is_librarian)
+def librarian_view(request):
+    return render(request, 'relationship_app/librarian_view.html')
+
+# Member view
+@login_required
+@user_passes_test(is_member)
+def member_view(request):
+    return render(request, 'relationship_app/member_view.html')
 # Authentication Views
 def login_view(request):
     if request.method == 'POST':
