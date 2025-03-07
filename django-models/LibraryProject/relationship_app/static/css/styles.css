@@ -1,0 +1,13 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 50px;
+}
+a {
+    text-decoration: none;
+    color: blue;
+    margin: 10px;
+}
+a:hover {
+    color: darkblue;
+}

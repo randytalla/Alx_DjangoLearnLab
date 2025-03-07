@@ -1,0 +1,16 @@
+{% load static %}
+<!-- home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Welcome to Library Project</h1>
+    <a href="{% url 'list_books' %}">View Books</a><br>
+    <a href="{% url 'register' %}">Register</a><br>
+    <a href="{% url 'login' %}">Login</a>
+</body>
+</html>
