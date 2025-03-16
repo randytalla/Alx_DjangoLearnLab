@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-axy@vco$fk2dm9agn3fin3k*u^ze7xf6%5=xoe((z@o6-@izt)'
+SECRET_KEY = 'django-insecure-$828+ia1em*3-@e6%mrarv(fok^1@wf6td3aa-&3%80%9c+m!*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'api'
+    'rest_framework',  # Add Django REST Framework
+    'api',  # Register the API app
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +124,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Django REST Framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',  # Enables session authentication
+        'rest_framework.authentication.BasicAuthentication',    # Enables basic auth
+        'rest_framework.authentication.TokenAuthentication',    # Enables token-based authentication
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',  # Default: Read access for everyone, write access for authenticated users
+    ]
+}
