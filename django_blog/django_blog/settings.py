@@ -81,6 +81,10 @@ DATABASES = {
     }
 }
 
+# If you are using PostgreSQL or another database, you can define user and port like so:
+DATABASES['default']['USER'] = 'your_database_user'   # Add this line
+DATABASES['default']['PORT'] = '5432'  # Or the port for your database
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
